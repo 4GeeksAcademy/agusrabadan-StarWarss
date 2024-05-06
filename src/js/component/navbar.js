@@ -3,14 +3,26 @@ import { Link } from "react-router-dom";
 
 export const Navbar = () => {
 	return (
-		<nav className="navbar navbar-light bg-light mb-3">
+
+
+
+		<nav className="navbar navbar-light bg- mb-3">
 			<Link to="/">
-				<span className="navbar-brand mb-0 h1">React Boilerplate</span>
+				<span classNameName="navbar-brand mb-0 h1"> <img height="75" className="mx-2" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSGuVAb1z5PDQY09j6kWl7iXAMVbD0hhyOnTQ&s" /> </span>
 			</Link>
-			<div className="ml-auto">
-				<Link to="/demo">
-					<button className="btn btn-primary">Check the Context in action</button>
-				</Link>
+
+			<div  role="group" aria-label="Basic example">
+			<button type="button" class="btn btn-warning mx-2">Characters</button>
+			<button type="button" class="btn btn-danger mx-2">Planets</button>
+			<button type="button" class="btn btn-primary mx-2">Vehicles</button>
+			<button className="btn btn-outline-success dropdown-toggle mx-5" type="button" data-bs-toggle="dropdown" aria-expanded="false">Favorites</button>
+			<ul className="dropdown-menu dropdown-menu-end">
+				<li><a className="dropdown-item" href="#">Acción</a></li>
+				<li><a className="dropdown-item" href="#">Otra acción</a></li>
+				<li><a className="dropdown-item" href="#">Algo más aquí</a></li>
+				<li><hr className="dropdown-divider" /></li>
+				<li><a className="dropdown-item" href="#">Enlace separado</a></li>
+			</ul>
 			</div>
 		</nav>
 	);
