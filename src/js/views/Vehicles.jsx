@@ -51,7 +51,7 @@ export const Vehicles = () => {
                             <img height="280" src={images[index]} className="card-img-top" alt="..." />
                             <div className="card-body d-flex justify-content-between align-items-end">
                                 <button type="button" class="btn btn-warning">+Info</button>
-                                <i style={{hover}} title="Add Favorite" style={{ cursor: "pointer" }} className="far fa-heart text-danger fs-3 "></i>
+                                <i title="Add Favorite" style={{ cursor: "pointer" }} className="far fa-heart text-danger fs-3 "></i>
                             </div>
                         </div>
                     </div>
