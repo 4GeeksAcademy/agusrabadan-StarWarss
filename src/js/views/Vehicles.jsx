@@ -43,7 +43,7 @@ export const Vehicles = () => {
         <div className="container text-center text-white">
             <div className="row">
                 {vehicles.map((item, index) => (
-                    <div key={index} className="col-lg-4 mb-3">
+                    <div key={index} className="col-lg-4 col-md-6 col-sm-10 mb-3">
                         <div className="card my-4" style={{ width: "19rem" }}>
                             <div className="card-body">
                                 <h5 className="card-title">{item.name}</h5>
