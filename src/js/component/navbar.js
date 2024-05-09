@@ -6,8 +6,10 @@ export const Navbar = () => {
 
 		<nav className="navbar navbar-light mb-3 ">
 			<Link to="/">
-				<span title="Home" classNameName="navbar-brand mb-0 h1"> <img height="75" className="mx-2" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSGuVAb1z5PDQY09j6kWl7iXAMVbD0hhyOnTQ&s" /> </span>
+				<span title="Home" className="navbar-brand mb-0 h1"> <img height="75" className="mx-2" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSGuVAb1z5PDQY09j6kWl7iXAMVbD0hhyOnTQ&s" /> </span>
 			</Link>
+
+			<Link to="/prueba"><button type="button" className="btn btn-warning mx-2">Prueba</button></Link>
 
 			<Link to="/characters"><button type="button" className="btn btn-warning mx-2">Characters</button></Link>
 

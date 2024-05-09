@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext } from "react";
+import { Context } from "./store/appContext";
 import { Link } from "react-router-dom";
 
-export const Characters = () => {
-    const [characters, setCharacters] = useState([]);
+export const Prueba = () => {
 
     const images = [
         "https://starwars-visualguide.com/assets/img/characters/1.jpg",
@@ -15,42 +15,23 @@ export const Characters = () => {
         "https://starwars-visualguide.com/assets/img/characters/8.jpg",
         "https://starwars-visualguide.com/assets/img/characters/9.jpg",
         "https://starwars-visualguide.com/assets/img/characters/10.jpg",
+    ];
 
-    ]
-
-    const getCharacters = async () => {
-        const url = "https://www.swapi.tech/api/people/";
-        const options = {
-            method: "GET"
-        };
-        const response = await fetch(url, options);
-
-        if (!response.ok) {
-            console.log("Error", response.status, response.statusText);
-            return;
-        }
-
-        const data = await response.json();
-        setCharacters(data.results); 
-        console.log(data);
-    };
-
-    useEffect(() => {
-        getCharacters();
-    }, []);
+    const { store, actions } = useContext(Context);
+    console.log(store.users)
 
     return (
         <div className="container text-center text-white">
             <div className="row">
-                {characters.map((character, index) => (
+                {store.users.map((item, index) => (
                     <div key={index} className="col-lg-4 col-md-6 col-sm-10 mb-3">
                         <div className="card my-4" style={{ width: "19rem" }}>
                             <div className="card-body">
-                                <h5 className="card-title">{character.name}</h5>
+                                <h5 className="card-title">{item.name}</h5>
                             </div>
                             <img height="280" src={images[index]} className="card-img-top" alt="..." />
                             <div className="card-body d-flex justify-content-between align-items-end">
-                                <button type="button" className="btn btn-warning">+Info</button>
+                                <Link to= {"/user/detail"}> <button type="button" className="btn btn-warning">+Info</button> </Link>
                                 <i title="Add Favorite" style={{ cursor: "pointer" }} className="far fa-heart text-danger fs-3 "></i>
                             </div>
                         </div>
@@ -60,4 +41,3 @@ export const Characters = () => {
         </div>
     );
 };
-
