@@ -3,7 +3,6 @@ import { Context } from "./store/appContext";
 import { Link } from "react-router-dom";
 
 export const Prueba = () => {
-
     const images = [
         "https://starwars-visualguide.com/assets/img/characters/1.jpg",
         "https://starwars-visualguide.com/assets/img/characters/2.jpg",
@@ -18,7 +17,10 @@ export const Prueba = () => {
     ];
 
     const { store, actions } = useContext(Context);
-    console.log(store.users)
+
+    const handleButton = (user) => {
+        actions.settingUser(user);
+    };
 
     return (
         <div className="container text-center text-white">
@@ -31,7 +33,9 @@ export const Prueba = () => {
                             </div>
                             <img height="280" src={images[index]} className="card-img-top" alt="..." />
                             <div className="card-body d-flex justify-content-between align-items-end">
-                                <Link to= {"/user/detail"}> <button type="button" className="btn btn-warning">+Info</button> </Link>
+                                <Link to="/user/detail">
+                                    <button type="button" onClick={() => handleButton(item.uid)} className="btn btn-warning">+Info</button>
+                                </Link>
                                 <i title="Add Favorite" style={{ cursor: "pointer" }} className="far fa-heart text-danger fs-3 "></i>
                             </div>
                         </div>
