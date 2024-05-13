@@ -18,8 +18,8 @@ export const Prueba = () => {
 
     const { store, actions } = useContext(Context);
 
-    const handleButton = (user) => {
-        actions.settingUser(user);
+    const handleUser = (url) => {
+        actions.settingUserUrl(url);
     };
 
     return (
@@ -33,8 +33,9 @@ export const Prueba = () => {
                             </div>
                             <img height="280" src={images[index]} className="card-img-top" alt="..." />
                             <div className="card-body d-flex justify-content-between align-items-end">
-                                <Link to="/user/detail">
-                                    <button type="button" onClick={() => handleButton(item.uid)} className="btn btn-warning">+Info</button>
+                                <Link to= {`/detail-users/${item.uid}`}
+                                    onClick={() => handleUser(item.url)} 
+                                    className="btn btn-warning">+Info
                                 </Link>
                                 <i title="Add Favorite" style={{ cursor: "pointer" }} className="far fa-heart text-danger fs-3 "></i>
                             </div>
