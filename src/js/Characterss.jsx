@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { Context } from "./store/appContext";
 import { Link } from "react-router-dom";
 
-export const Prueba = () => {
+export const Characterss = () => {
     
 
     const { store, actions } = useContext(Context);
