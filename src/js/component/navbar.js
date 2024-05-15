@@ -9,6 +9,9 @@ export const Navbar = () => {
 				<span title="Home" className="navbar-brand mb-0 h1"> <img height="75" className="mx-2" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSGuVAb1z5PDQY09j6kWl7iXAMVbD0hhyOnTQ&s" /> </span>
 			</Link>
 
+			<Link to="/contacts"><button type="button" className="btn btn-success mx-2">Contacts</button></Link>
+
+
 			<Link to="/characters"><button type="button" className="btn btn-warning mx-2">Characters</button></Link>
 
 			<Link to="/planets"><button type="button" className="btn btn-danger mx-2">Planets</button></Link>

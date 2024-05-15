@@ -1,7 +1,6 @@
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
-
 			users: [],
 			currentUser: null,
 			currentUserUrl: "",
@@ -10,104 +9,110 @@ const getState = ({ getStore, getActions, setStore }) => {
 			currentPlanetUrl: "",
 			vehicles: [],
 			currentVehicle: null,
-			currentVehicleUrl: ""
-
+			currentVehicleUrl: "",
+			apiContact: "https://playground.4geeks.com/contact/",
+			agenda: "spain",
+			contacts: [],
 		},
 
 		actions: {
-
-			//Lógica para Characters
+			// Lógica para Characters
 			getUsers: async () => {
-				const response = await fetch("https://www.swapi.tech/api/people/")
+				const response = await fetch("https://www.swapi.tech/api/people/");
 				if (!response.ok) {
 					console.log("Error");
-					return
+					return;
 				}
 				const data = await response.json();
-				console.log(data)
+				console.log(data);
 				setStore({ users: data.results });
 			},
 
-			settingUser: (user) => { setStore({ currentUser: user }) },
-
-			settingUserUrl: (text) => { setStore({ currentUserUrl: text }) },
+			settingUser: (user) => { setStore({ currentUser: user }); },
+			settingUserUrl: (text) => { setStore({ currentUserUrl: text }); },
 
 			getCurrentUser: async () => {
 				const uri = getStore().currentUserUrl;
 				const response = await fetch(uri);
 				if (!response.ok) {
 					console.log("Error");
-					return
+					return;
 				}
 				const data = await response.json();
-				console.log(data)
+				console.log(data);
 				setStore({ currentUser: data.result });
-
 			},
 
-			//Lógica para Planetas
-
+			// Lógica para Planetas
 			getPlanets: async () => {
-				const response = await fetch("https://www.swapi.tech/api/planets/")
+				const response = await fetch("https://www.swapi.tech/api/planets/");
 				if (!response.ok) {
 					console.log("Error");
-					return
+					return;
 				}
 				const data = await response.json();
-				console.log(data)
+				console.log(data);
 				setStore({ planets: data.results });
 			},
 
-			settingPlanet: (planet) => { setStore({ currentPlanet: planet }) },
-
-			settingPlanetUrl: (text) => { setStore({ currentPlanetUrl: text }) },
+			settingPlanet: (planet) => { setStore({ currentPlanet: planet }); },
+			settingPlanetUrl: (text) => { setStore({ currentPlanetUrl: text }); },
 
 			getCurrentPlanet: async () => {
 				const uri = getStore().currentPlanetUrl;
 				const response = await fetch(uri);
 				if (!response.ok) {
 					console.log("Error");
-					return
+					return;
 				}
 				const data = await response.json();
-				console.log(data)
+				console.log(data);
 				setStore({ currentPlanet: data.result });
-
 			},
 
-			//Lógica para Vehículos
-
+			// Lógica para Vehículos
 			getVehicles: async () => {
-				const response = await fetch("https://www.swapi.tech/api/vehicles/")
+				const response = await fetch("https://www.swapi.tech/api/vehicles/");
 				if (!response.ok) {
 					console.log("Error");
-					return
+					return;
 				}
 				const data = await response.json();
-				console.log(data)
+				console.log(data);
 				setStore({ vehicles: data.results });
 			},
 
-			settingVehicle: (vehicle) => { setStore({ currentVehicle: vehicle }) },
-
-			settingVehicleUrl: (text) => { setStore({ currentVehicleUrl: text }) },
+			settingVehicle: (vehicle) => { setStore({ currentVehicle: vehicle }); },
+			settingVehicleUrl: (text) => { setStore({ currentVehicleUrl: text }); },
 
 			getCurrentVehicle: async () => {
 				const uri = getStore().currentVehicleUrl;
 				const response = await fetch(uri);
 				if (!response.ok) {
 					console.log("Error");
-					return
+					return;
 				}
 				const data = await response.json();
-				console.log(data)
+				console.log(data);
 				setStore({ currentVehicle: data.result });
+			},
 
+
+			//Logica para contacts
+			getContacts: async () => {
+				const uri = `${getStore().apiContact}agendas/${getStore().agenda}/contacts`
+				const response = await fetch(uri);
+				if (!response.ok) {
+					console.log("Error", response.status, response.statusText);
+					return;
+				}
+				const data = await response.json();
+				
+				console.log(data.contacts)
+				setStore({ contacts: data.contacts });
 			}
 		}
 	};
 };
-
-
 
 export default getState;
