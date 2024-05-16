@@ -11,7 +11,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			currentVehicle: null,
 			currentVehicleUrl: "",
 			apiContact: "https://playground.4geeks.com/contact/",
-			agenda: "spain",
+			agenda: "Agus",
 			contacts: [],
 		},
 
@@ -110,7 +110,31 @@ const getState = ({ getStore, getActions, setStore }) => {
 				
 				console.log(data.contacts)
 				setStore({ contacts: data.contacts });
-			}
+			},
+			//Lógica para añadir contactos
+			addContact: async (contact) => {
+                const store = getStore();
+                const response = await fetch(`https://playground.4geeks.com/contact/agendas/${getStore().agenda}/contacts`, {
+                    method: "POST",
+                    body: JSON.stringify(contact),
+                    headers: {
+                        "Content-Type": "application/json"
+                    }
+                });
+                if (response.ok) {
+                    const newContact = await response.json();
+                    setStore({ contacts: [...store.contacts, newContact] });
+                }
+            },
+			deleteContact: async (id) => {
+                const store = getStore();
+                const response = await fetch(`https://playground.4geeks.com/contact/agendas/${getStore().agenda}/contacts/${id}`, {
+                    method: "DELETE"
+                });
+                if (response.ok) {
+                    setStore({ contacts: store.contacts.filter(contact => contact.id !== id) });
+                }
+            }
 		}
 	};
 };
