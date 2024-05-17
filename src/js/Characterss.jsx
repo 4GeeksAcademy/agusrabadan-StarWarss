@@ -1,9 +1,23 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Context } from "./store/appContext";
 import { Link } from "react-router-dom";
 
 export const Characterss = () => {
     const { store, actions } = useContext(Context);
+    const [favorites, setFavorites] = useState(store.favorites.map(item => item.name ));
+
+    const toggleFavorite = (name) => {
+        if (favorites.includes(name)) {
+            const updatedFavorites = favorites.filter(item => item !== name);
+            setFavorites(updatedFavorites);
+            actions.removeFavorite(name);
+        } else {
+            setFavorites([...favorites, name]);
+            actions.addFavorites({ name });
+        }
+    };
+    
+    const isFavorite = (name) => favorites.includes(name);
 
     const handleUser = (url) => {
         actions.settingUserUrl(url);
@@ -24,8 +38,8 @@ export const Characterss = () => {
                                     onClick={() => handleUser(item.url)}
                                     className="btn btn-warning">+Info
                                 </Link>
-                                <span onClick={() => actions.addFavorites({ name: item.name })}>
-                                    <i title="Add Favorite" style={{ cursor: "pointer" }} className="far fa-heart text-danger fs-3"></i>
+                                <span onClick={() => toggleFavorite(item.name)}>
+                                    <i title="Add Favorite" style={{ cursor: "pointer" }} className={isFavorite(item.name) ? "fas fa-heart text-danger fs-3" : "far fa-heart text-danger fs-3"}></i>
                                 </span>
                             </div>
                         </div>
@@ -35,3 +49,4 @@ export const Characterss = () => {
         </div>
     );
 };
+

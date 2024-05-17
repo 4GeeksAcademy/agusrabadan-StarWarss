@@ -1,5 +1,6 @@
 import React, { useContext, useEffect } from "react";
 import { Context } from "./store/appContext";
+import { Link } from "react-router-dom";
 
 
 export const UserDetail = () => {
@@ -32,8 +33,9 @@ export const UserDetail = () => {
                             <p className="card-text text-white">Birth: {store.currentUser.properties.birth_year}</p>
                             <p className="card-text text-white">Mass: {store.currentUser.properties.mass}</p>
                             <p className="card-text text-white">Hair: {store.currentUser.properties.hair_color}</p>
+                            <p className="card-text text-white">Skin: {store.currentUser.properties.skin_color}</p>
                             <p className="card-text text-white">Eyes: {store.currentUser.properties.eye_color}</p>
-                            <p className="card-text text-white">Planet: {store.currentUser.properties.homeworld}</p>
+                            
 
                         </div>
                     </div>

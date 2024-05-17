@@ -13,7 +13,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			apiContact: "https://playground.4geeks.com/contact/",
 			agenda: "Agus",
 			contacts: [],
-			favorites:[]
+			favorites: []
 		},
 
 		actions: {
@@ -108,46 +108,56 @@ const getState = ({ getStore, getActions, setStore }) => {
 					return;
 				}
 				const data = await response.json();
-				
+
 				console.log(data.contacts)
 				setStore({ contacts: data.contacts });
 			},
-			
+
 			//Lógica para añadir contactos
 			addContact: async (contact) => {
-                const store = getStore();
-                const response = await fetch(`https://playground.4geeks.com/contact/agendas/${getStore().agenda}/contacts`, {
-                    method: "POST",
-                    body: JSON.stringify(contact),
-                    headers: {
-                        "Content-Type": "application/json"
-                    }
-                });
-                if (response.ok) {
-                    const newContact = await response.json();
-                    setStore({ contacts: [...store.contacts, newContact] });
-                }
-            },
+				const store = getStore();
+				const response = await fetch(`https://playground.4geeks.com/contact/agendas/${getStore().agenda}/contacts`, {
+					method: "POST",
+					body: JSON.stringify(contact),
+					headers: {
+						"Content-Type": "application/json"
+					}
+				});
+				if (response.ok) {
+					const newContact = await response.json();
+					setStore({ contacts: [...store.contacts, newContact] });
+				}
+			},
 			deleteContact: async (id) => {
-                const store = getStore();
-                const response = await fetch(`https://playground.4geeks.com/contact/agendas/${getStore().agenda}/contacts/${id}`, {
-                    method: "DELETE"
-                });
-                if (response.ok) {
-                    setStore({ contacts: store.contacts.filter(contact => contact.id !== id) });
-                }
-            },
+				const store = getStore();
+				const response = await fetch(`https://playground.4geeks.com/contact/agendas/${getStore().agenda}/contacts/${id}`, {
+					method: "DELETE"
+				});
+				if (response.ok) {
+					setStore({ contacts: store.contacts.filter(contact => contact.id !== id) });
+				}
+			},
 
-			
+
 			//Lógica para favoritos
 
+			
 			addFavorites: (favorite) => {
-                const store = getStore();
-                const existingFavorites = store.favorites;
-                if (!existingFavorites.some(item => item.name === favorite.name)) {
-                    setStore({ favorites: [...existingFavorites, favorite] });
-                }
-            },
+				const store = getStore();
+				const existingFavorites = store.favorites;
+				const isAlreadyFavorite = existingFavorites.some(item => item.name === favorite.name && item.type === favorite.type);
+				if (!isAlreadyFavorite) {
+					setStore({ favorites: [...existingFavorites, favorite] });
+				}
+			},
+
+			// Funcioón para borrar el favorito
+			removeFavorite: (name) => {
+				const existingFavorites = getStore().favorites;
+				const updatedFavorites = existingFavorites.filter(item => item.name !== name);
+				setStore({ favorites: updatedFavorites });
+			}
+
 		}
 	};
 };

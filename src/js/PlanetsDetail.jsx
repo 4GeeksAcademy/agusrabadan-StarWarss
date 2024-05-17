@@ -38,7 +38,7 @@ export const PlanetsDetail = () => {
                             <p className="card-text text-white">Terrain: {store.currentPlanet.properties.terrain}</p>
                             <p className="card-text text-white">Orbital Period: {store.currentPlanet.properties.orbital_period}</p>
                             <p className="card-text text-white">Rotation Period: {store.currentPlanet.properties.rotation_period}</p>
-                            <p className="card-text text-white">URL: {store.currentPlanet.properties.url}</p>
+                            
 
                         </div>
                     </div>
