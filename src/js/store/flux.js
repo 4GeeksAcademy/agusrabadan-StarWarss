@@ -13,6 +13,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			apiContact: "https://playground.4geeks.com/contact/",
 			agenda: "Agus",
 			contacts: [],
+			favorites:[]
 		},
 
 		actions: {
@@ -111,6 +112,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				console.log(data.contacts)
 				setStore({ contacts: data.contacts });
 			},
+			
 			//Lógica para añadir contactos
 			addContact: async (contact) => {
                 const store = getStore();
@@ -134,7 +136,18 @@ const getState = ({ getStore, getActions, setStore }) => {
                 if (response.ok) {
                     setStore({ contacts: store.contacts.filter(contact => contact.id !== id) });
                 }
-            }
+            },
+
+			
+			//Lógica para favoritos
+
+			addFavorites: (favorite) => {
+                const store = getStore();
+                const existingFavorites = store.favorites;
+                if (!existingFavorites.some(item => item.name === favorite.name)) {
+                    setStore({ favorites: [...existingFavorites, favorite] });
+                }
+            },
 		}
 	};
 };

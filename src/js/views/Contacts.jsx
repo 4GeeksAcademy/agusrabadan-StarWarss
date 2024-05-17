@@ -27,11 +27,11 @@ export const Contacts = () => {
 
     return (
         <div className="container text-center">
-            <h1 className="text-white">Contacts</h1>
+            <h1 className="text-white">Contacts for slug: {store.agenda}</h1>
 
 
 
-            <ul className="list-group col-4 mx-auto ">
+            <ul className="list-group col-4 mx-auto mt-4 ">
                 {!store.contacts ? (
                     <div className="spinner-border" role="status">
                         <span className="sr-only">Loading...</span>
@@ -41,24 +41,34 @@ export const Contacts = () => {
                         <li key={index} className="list-group-item d-flex justify-content-between align-items-center">
                             <strong>{item.name}</strong>
 
-                            <div className="ms-auto">
+                            <div className="ms-auto bg-white">
+
+                                <span 
+                                title="Edit"
+                                style={{ cursor: "pointer" }}
+                                className="fs-5 text-primary">
+                                <i class="fas fa-edit"></i>
+                                </span>
 
                                 <span
-
-                                    className="btn btn-danger"
+                                    title="Delete"
+                                    style={{ cursor: "pointer" }}
+                                    className="text-danger mx-3 fs-5"
                                     onClick={() => actions.deleteContact(item.id)}
                                 >
                                     <i className="fas fa-trash-alt"></i>
                                 </span>
 
-                                <button
-                                    type="button"
-                                    className="btn btn-success me-2"
+                                
+                                <span
+                                    title="Details"
+                                    style={{ cursor: "pointer" }}
+                                    className="text-success fs-5"
                                     data-bs-toggle="modal"
-                                    data-bs-target={`#staticBackdrop-${index}`}
-                                >
+                                    data-bs-target={`#staticBackdrop-${index}`} >
                                     <i className="fas fa-info-circle"></i>
-                                </button>
+                                </span>
+                               
 
 
                             </div>
@@ -114,9 +124,9 @@ export const Contacts = () => {
                 data-bs-target="#addContactModal"
             >
                 Add Contact
+            
             </button>
-
-
+            {/* Modal/Formulario para añadir contacto  */}
             <form>
                 <div
                     className="modal fade text-white"
@@ -196,6 +206,7 @@ export const Contacts = () => {
                                     type="button"
                                     className="btn btn-success"
                                     onClick={handleSaveContact}
+                                    data-bs-dismiss="modal"
                                 >
                                     Add Contact
                                 </button>

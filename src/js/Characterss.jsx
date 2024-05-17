@@ -3,8 +3,6 @@ import { Context } from "./store/appContext";
 import { Link } from "react-router-dom";
 
 export const Characterss = () => {
-    
-
     const { store, actions } = useContext(Context);
 
     const handleUser = (url) => {
@@ -22,11 +20,13 @@ export const Characterss = () => {
                             </div>
                             <img height="280" src={`https://starwars-visualguide.com/assets/img/characters/${item.uid}.jpg`} className="card-img-top" alt="..." />
                             <div className="card-body d-flex justify-content-between align-items-end">
-                                <Link to= {`/detail-users/${item.uid}`}
-                                    onClick={() => handleUser(item.url)} 
+                                <Link to={`/detail-users/${item.uid}`}
+                                    onClick={() => handleUser(item.url)}
                                     className="btn btn-warning">+Info
                                 </Link>
-                                <i title="Add Favorite" style={{ cursor: "pointer" }} className="far fa-heart text-danger fs-3 "></i>
+                                <span onClick={() => actions.addFavorites({ name: item.name })}>
+                                    <i title="Add Favorite" style={{ cursor: "pointer" }} className="far fa-heart text-danger fs-3"></i>
+                                </span>
                             </div>
                         </div>
                     </div>
