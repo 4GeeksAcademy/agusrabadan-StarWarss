@@ -127,7 +127,7 @@ export const Contacts = () => {
             
             </button>
             {/* Modal/Formulario para añadir contacto  */}
-            <form>
+            <form onSubmit={handleChange}>
                 <div
                     className="modal fade text-white"
                     id="addContactModal"

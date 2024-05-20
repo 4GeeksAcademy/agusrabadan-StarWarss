@@ -15,7 +15,7 @@ export const Planets = () => {
             actions.removeFavorite(name);
         } else {
             setFavorites([...favorites, name]);
-            actions.addFavorites({ name });
+            actions.addFavorites({ name, type: "Planet" });
         }
     };
     

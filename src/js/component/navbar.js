@@ -40,8 +40,10 @@ export const Navbar = () => {
                 <ul className="dropdown-menu dropdown-menu-end bg-dark" aria-labelledby="dropdownMenuButton">
                     {store.favorites.length > 0 ? (
                         store.favorites.map((item, index) => (
-                            <li key={index} className="dropdown-item text-warning">
-                               {item.name} {item.type}
+                            <li key={index} className="dropdown-item text-warning ">
+
+                               <span className="fw-bold">{item.name} </span>
+                               <span className="fst-italic">{item.type}</span>
 							   <span 
 							   title="Delete"
 							   style={{ cursor: "pointer" }}

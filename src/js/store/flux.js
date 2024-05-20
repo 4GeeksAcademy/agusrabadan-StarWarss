@@ -151,7 +151,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			},
 
-			// Funcioón para borrar el favorito
+			// Función para borrar el favorito
 			removeFavorite: (name) => {
 				const existingFavorites = getStore().favorites;
 				const updatedFavorites = existingFavorites.filter(item => item.name !== name);

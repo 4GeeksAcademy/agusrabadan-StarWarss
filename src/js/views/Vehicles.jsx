@@ -15,7 +15,7 @@ export const Vehicles = () => {
             actions.removeFavorite(name);
         } else {
             setFavorites([...favorites, name]);
-            actions.addFavorites({ name });
+            actions.addFavorites({ name, type: "Vehicle" });
         }
     };
     

@@ -13,7 +13,7 @@ export const Characterss = () => {
             actions.removeFavorite(name);
         } else {
             setFavorites([...favorites, name]);
-            actions.addFavorites({ name });
+            actions.addFavorites({ name, type:"Character" });
         }
     };
     
@@ -39,7 +39,8 @@ export const Characterss = () => {
                                     className="btn btn-warning">+Info
                                 </Link>
                                 <span onClick={() => toggleFavorite(item.name)}>
-                                    <i title="Add Favorite" style={{ cursor: "pointer" }} className={isFavorite(item.name) ? "fas fa-heart text-danger fs-3" : "far fa-heart text-danger fs-3"}></i>
+                                    <i title="Add Favorite" 
+                                    style={{ cursor: "pointer" }} className={isFavorite(item.name) ? "fas fa-heart text-danger fs-3" : "far fa-heart text-danger fs-3"}></i>
                                 </span>
                             </div>
                         </div>
@@ -49,4 +50,3 @@ export const Characterss = () => {
         </div>
     );
 };
-
